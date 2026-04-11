@@ -309,7 +309,7 @@ async def h(m: Message):
     
     db["bookings"][d["date"]] = bookings
         
-        db["clients"][str(m.from_user.id)] = d
+    db["clients"][str(m.from_user.id)] = d
     save()
     
     kb = InlineKeyboardMarkup(inline_keyboard=[
