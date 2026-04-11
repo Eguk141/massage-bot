@@ -289,36 +289,26 @@ async def h(m: Message):
     "phone": d["phone"]
     })
     
-    db["clients"][str(m.from_user.id)] = d
-        
-         save()
-      
-         kb = InlineKeyboardMarkup(inline_keyboard=[
-    ]
-         InlineKeyboardButton(text="❌ Скасувати", callback_data=f"cancel_{d['date']}_{d['time']}"),
-         InlineKeyboardButton(text="🔁 Перенести", callback_data=f"move_{d['date']}_{d['time']}")
+     from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+db["clients"][str(m.from_user.id)] = d
+save()
+
+kb = InlineKeyboardMarkup(inline_keyboard=[
+    [
+        InlineKeyboardButton(text="❌ Скасувати", callback_data=f"cancel_{d['date']}"),
+        InlineKeyboardButton(text="🔄 Перенести", callback_data=f"move_{d['date']}")
     ]
 ])
 
-        await bot.send_message(
-        ADMIN_ID,
-        f"✨ НОВИЙ ЗАПИС:\n\n"
-        f"👤 {d['name']}\n"
-        f"📞 {d['phone']}\n"
-        f"📅 {d['date']}\n"
-        f"🕐 {d['time']}",
-        reply_markup=kb
-    )
-     user_id = str(m.from_user.id)
- data = db["clients"].get(user_id, {})
-
- text = (
-     f" ✅ Запис підтверджено!\n\n"
-     f" 👤 Ім'я: {data.get('name', '-')}\n"
-     f" 📞 Телефон: {data.get('phone', '-')}\n"
-     f" 📅 Дата: {data.get('date', '-')}\n"
-     f" 🕐 Час: {data.get('time', '-')}"
- )
+await bot.send_message(
+    ADMIN_ID,
+    f"✨ НОВИЙ ЗАПИС:\n\n"
+    f"👤 {d['name']}\n"
+    f"📞 {d['phone']}\n"
+    f"📅 {d['date']}\n"
+    f"🕒 {d['time']}",
+    reply_markup=kb
+)
         await m.answer(text)
         users.pop(user_id)
 
