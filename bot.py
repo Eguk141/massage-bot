@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from aiogram import Bot, Dispatcher
 from aiogram.filters import Command
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
+ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 db = {
     "blacklist": [],
     "clients": {},
@@ -291,8 +292,7 @@ async def h(m: Message):
         db["clients"][str(m.from_user.id)] = d
         
         save()
-       from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-
+      
 kb = InlineKeyboardMarkup(inline_keyboard=[
     [
         InlineKeyboardButton(text="❌ Скасувати", callback_data=f"cancel_{d['date']}_{d['time']}"),
