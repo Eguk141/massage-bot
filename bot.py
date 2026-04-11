@@ -331,6 +331,27 @@ async def h(m: Message):
     await m.answer(text)
     users.pop(user_id)
 
+    # 🔘 handler
+    @dp.callback_query()
+    async def handle_buttons(callback: CallbackQuery):
+    data = callback.data
+    
+    if data.startswith("cancel_"):
+        await callback.message.answer("❌ Запис скасовано")
+        await callback.answer()
+    
+    elif data.startswith("move_"):
+        await callback.message.answer("🔁 Перенесення")
+        await callback.answer()
+    
+    
+    # 🚀 запуск
+    async def main():
+    await dp.start_polling(bot)
+    
+    if __name__ == "__main__":
+    import asyncio
+    asyncio.run(main())
     async def main():
        await dp.start_polling(bot)
     
