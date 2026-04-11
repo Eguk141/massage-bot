@@ -364,7 +364,5 @@ async def h(m: Message):
     
     print("Файл стартує")
    
-    if __name__ == "__main__":   
-        print("Я зайшов в main")
-        asyncio.run(main())   
-        
+     import asyncio
+     asyncio.run(main())   
