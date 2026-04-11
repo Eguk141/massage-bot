@@ -351,4 +351,14 @@ async def h(m: Message):
         print("Бот стартує") 
         await dp.start_polling(bot)
             
-    asyncio.run(main())   
+    asyncio.run(main()) 
+    import asyncio
+    print("1. Файл запустився")
+
+    sync def main():
+        print("2. Зайшли в main")
+        await dp.start_polling(bot)
+    print("3. Перед Run")
+
+    aeyncio.run(main())
+    print("4.Після Run")
