@@ -67,7 +67,7 @@ def weekends():
             if date not in db["blocked_dates"]:
                 res.append(date)
     return res[:4]
-@router.message(Command("list"))
+@dp.message(Command("list"))
 async def list_bookings(m: Message):
     if not db["bookings"]:
         await m.answer("❌ Записів поки немає")
