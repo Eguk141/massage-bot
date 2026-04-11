@@ -334,16 +334,16 @@ async def h(m: Message):
     # 🔘 handler
     @dp.callback_query()
     async def handle_buttons(callback: CallbackQuery):
-    data = callback.data
+        data = callback.data
     
-    if data.startswith("cancel_"):
-        await callback.message.answer("❌ Запис скасовано")
-        await callback.answer()
-    
-    elif data.startswith("move_"):
-        await callback.message.answer("🔁 Перенесення")
-        await callback.answer()
-    
+        if data.startswith("cancel_"):
+            await callback.message.answer("❌ Запис скасовано")
+            await callback.answer()
+        
+        elif data.startswith("move_"):
+            await callback.message.answer("🔁 Перенесення")
+            await callback.answer()
+
     
     # 🚀 запуск
     async def main():
@@ -358,14 +358,4 @@ async def h(m: Message):
     if __name__ == "__main__":
         import asyncio
         asyncio.run(main())
-    @dp.callback_query()
-    async def handle_buttons(callback):
-        data = callback.data
-        
-        if data.startswith("cancel_"):
-            await callback.message.answer("❌ Запис скасовано (поки без логіки)")
-            await callback.answer()
-        
-        elif data.startswith("move_"):
-            await callback.message.answer("🔁 Перенесення (поки заглушка)")
-            await callback.answer()
+   
