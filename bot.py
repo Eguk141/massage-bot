@@ -297,13 +297,19 @@ async def h(m: Message):
                 return
         
      # якщо вільно — додаємо
-    bookings.append({
+   # якщо вільно — додаємо
+
+bookings = db["bookings"].get(d["date"], [])
+
+bookings.append({
     "time": d["time"],
     "duration": int(d["duration"].split()[0]),
     "price": d["price"],
     "name": d["name"],
     "phone": d["phone"]
-    })
+})
+
+db["bookings"][d["date"]] = bookings
     
     db["clients"][str(m.from_user.id)] = d
     save()
