@@ -352,13 +352,8 @@ async def h(m: Message):
     
     async def main():
         print("Бот стартує")
-        try:
-            await bot.delete_webhnook(drop_pending_updates=True)
-            print(" webhnook видалено")
-            
-            await dp.start_polling(bot)
-            print(" polling завершився (це погано)")
-        except Exception as e:
-            print(" Помилка:", e)
+         await bot.delete_webhnook(drop_pending_updates=True)
+         await dp.start_polling(bot)
+                       
     if __name__ == "__main__":            
         asyncio.run(main())     
