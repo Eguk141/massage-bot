@@ -335,7 +335,8 @@ async def h(m: Message):
        await dp.start_polling(bot)
     
     if __name__ == "__main__":
-    asyncio.run(main())
+        import asyncio
+        asyncio.run(main())
     @dp.callback_query()
     async def handle_buttons(callback):
     data = callback.data
