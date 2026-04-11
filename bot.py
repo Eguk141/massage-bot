@@ -347,13 +347,7 @@ async def h(m: Message):
     
     # 🚀 запуск
     async def main():
-    await dp.start_polling(bot)
-    
-    if __name__ == "__main__":
-    import asyncio
-    asyncio.run(main())
-    async def main():
-       await dp.start_polling(bot)
+        await dp.start_polling(bot)
     
     if __name__ == "__main__":
         import asyncio
