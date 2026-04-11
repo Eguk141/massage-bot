@@ -352,7 +352,12 @@ async def h(m: Message):
     
     async def main():
         print("Бот стартує")
-        await bot.delete_webhnook(drop_pending_updates=True)
+        try:
+            await bot.delete_webhnook(drop_pending_updates=True)
+            print("Webhook видалено")
+        except Exeption as e:
+            print("Помилка webhook:". e)
+       
         await dp.start_polling(bot)
                        
     if __name__ == "__main__":            
