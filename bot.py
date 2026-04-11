@@ -74,12 +74,14 @@ async def list_bookings(m.Message):
     if not db["bookings"]:
         await m.answer(" ❌ Записів поки немає,зарядись енергією 🔋")
         return
-    text= "📋 Всі записи:\n\n"
+    text = "📋 Всі записи:\n\n"
 
     for date, bookings in db["bookings".i.tems():
         text += f"📅 {date}\n"
+    
         for b in bookings:
-            text += (
+            
+        text += (
                 f" 🕰 {b['time']} - {b['name']} "
                 f"({b['phone']}\n"
             )
