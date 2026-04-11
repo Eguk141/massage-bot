@@ -345,10 +345,10 @@ async def h(m: Message):
             await callback.answer()
     
     # 🚀 запуск
+    import asyncio
+    
     async def main():
         print("Бот стартує") 
         await dp.start_polling(bot)
-    
-    if __name__ == "__main__":
-        import asyncio
-        asyncio.run(main())   
+            
+    asyncio.run(main())   
