@@ -275,8 +275,8 @@ async def h(m: Message):
            f" 📅 Дата: {data.get('date', '-')}\n"
            f" 🕐 Час: {data.get('time', '-')}"
        )
-       await m.answer(text)
-       users.pop(uid)
+        await m.answer(text)
+        users.pop(uid)
 
 async def main():
     await dp.start_polling(bot)
