@@ -75,16 +75,17 @@ async def list_bookings(m: Message):
 
     text = "📋 Всі записи:\n\n"
 
-    for date, bookings in db["bookings"].items():
-        text += f"📅 {date}\n"
+for date, items in db["bookings"].items():
+    text += f"📅 {date}\n"
+    
+    for b in items:
+        text += f"  🕐 {b['time']} — {b['name']} ({b['phone']})\n"
+    
+    text += "\n"
 
-        for b in bookings:
-            text += f"🕒 {b['time']} — {b['name']} ({b['phone']})\n"
+await message.answer(text)
 
-        text += "\n"
-
-    await m.answer(text)
-
+  
 def free_slots(date, duration):
     duration = int(duration.split()[0])
     day = db["bookings"].get(date, [])
@@ -270,7 +271,22 @@ async def h(m: Message):
         users[uid]["phone"] = text
         d = users[uid]
 
-        db["bookings"].setdefault(d["date"], []).append({
+       bookings = db["bookings"].setdefault(d["date"], [])
+
+    # перевірка чи час зайнятий
+    for b in bookings:
+        if b["time"] == d["time"]:
+            await m.answer("❌ Цей час вже зайнятий")
+            return
+    
+    # якщо вільно — додаємо
+    bookings.append({
+        "time": d["time"],
+        "duration": int(d["duration"].split()[0]),
+        "price": d["price"],
+        "name": d["name"],
+        "phone": d["phone"]
+    })
             "time": d["time"],
             "duration": int(d["duration"].split()[0]),
             "price": d["price"],
@@ -281,14 +297,24 @@ async def h(m: Message):
         db["clients"][str(m.from_user.id)] = d
         
         save()
-        await bot.send_message(
-        ADMIN_ID,
-            f"✨ НОВИЙ ЗАПИС!\n\n"
-            f"👤 {d.get('name', '-')}\n"
-            f"📞 {d.get('phone', '-')}\n"
-            f"📅 {d.get('date', '-')}\n"
-            f"🕒 {d.get('time', '-')}"
-    )
+       from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+
+kb = InlineKeyboardMarkup(inline_keyboard=[
+    [
+        InlineKeyboardButton(text="❌ Скасувати", callback_data=f"cancel_{d['date']}_{d['time']}"),
+        InlineKeyboardButton(text="🔁 Перенести", callback_data=f"move_{d['date']}_{d['time']}")
+    ]
+])
+
+await bot.send_message(
+    ADMIN_ID,
+    f"✨ НОВИЙ ЗАПИС:\n\n"
+    f"👤 {d['name']}\n"
+    f"📞 {d['phone']}\n"
+    f"📅 {d['date']}\n"
+    f"🕐 {d['time']}",
+    reply_markup=kb
+)
         user_id = str(m.from_user.id)
         data = db["clients"].get(user_id, {})
 
