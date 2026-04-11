@@ -69,7 +69,22 @@ def weekends():
     return res[:4]
 @dp.message(Command("list"))
 async def list_bookings(m: Message):
-    await m.answer("Я працюю 😀")
+@router.message(Command("list"))
+async def list_bookings(m.Message):
+    if not db["bookings"]:
+        await m.answer(" ❌ Записів поки немає,зарядись енергією 🔋")
+        return
+    text= " 📋 Всі записи:\n\n"
+
+    for date, bookings in db["bookings".i.tems():
+        text += f"📅 {date}\n"
+        for b in bookings:
+            text += (
+                f" 🕰 {b['time']} - {b['name']} "
+                f"({b['phone']}\n"
+            )
+        text += "\n"
+    await m.answer(text)
 
 def free_slots(date, duration):
     duration = int(duration.split()[0])
@@ -110,7 +125,7 @@ client_kb = ReplyKeyboardMarkup(
 async def start(m: Message):
     if "blacklist" in db and m.from_user.id in db["blacklist"]:
         return
-    await m.answer("Вітаю 💆‍♀️", reply_markup=main_kb)
+    await m.answer("Вітаю!Майстер Тетяна,рада Вам допомогти 💆‍♀️", reply_markup=main_kb)
 
 # --- CANCEL ---
 @dp.message(lambda m: m.text == "Скасувати запис")
