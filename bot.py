@@ -347,22 +347,22 @@ async def h(m: Message):
             await callback.message.answer("🔁 Перенесення")
             await callback.answer()
     
-    # 🚀 запуск
-    import asyncio
+# 🚀 запуск
+import asyncio
+
+async def main():
+    print("Бот стартує")
     
-    async def main():
-        print("Бот стартує")
-        
-        try:
-            await bot.delete_webhnook(drop_pending_updates=True)
-            print("Webhook видалено")
-        except Exeption as e:
-            print("Помилка webhook:". e)
-          
-        print("Перед polling")  #перед
-        await dp.start_polling(bot)
-    
-    print("Файл стартує")
-   
-     import asyncio
-     asyncio.run(main())   
+    try:
+        await bot.delete_webhnook(drop_pending_updates=True)
+        print("Webhook видалено")
+    except Exeption as e:
+        print("Помилка webhook:". e)
+      
+    print("Перед polling")  #перед
+    await dp.start_polling(bot)
+
+print("Файл стартує")
+
+ import asyncio
+ asyncio.run(main())   
