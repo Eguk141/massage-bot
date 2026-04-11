@@ -332,7 +332,7 @@ async def h(m: Message):
     users.pop(user_id)
 
     async def main():
-    await dp.start_polling(bot)
+       await dp.start_polling(bot)
     
     if __name__ == "__main__":
     asyncio.run(main())
