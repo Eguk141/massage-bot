@@ -67,25 +67,25 @@ def weekends():
             if date not in db["blocked_dates"]:
                 res.append(date)
     return res[:4]
-@dp.message(Command("list"))
-async def list_bookings(m: Message):
-@router.message(Command("list"))
-async def list_bookings(m: Message):
-    if not db["bookings"]:
-        await m.answer("❌ Записів поки немає,зарядись енергією 🔋")
-        return
-
-    text = "📋 Всі записи:\n\n"
-
-    for date, bookings in db["bookings"].items():
-        text += f"📅 {date}\n"
-
-        for b in bookings:
-            text += f"🕒 {b['time']} — {b['name']} ({b['phone']})\n"
-
-        text += "\n"
-
-    await m.answer(text)
+    @dp.message(Command("list"))
+    async def list_bookings(m: Message):
+    @router.message(Command("list"))
+    async def list_bookings(m: Message):
+        if not db["bookings"]:
+            await m.answer("❌ Записів поки немає,зарядись енергією 🔋")
+            return
+    
+        text = "📋 Всі записи:\n\n"
+    
+        for date, bookings in db["bookings"].items():
+            text += f"📅 {date}\n"
+    
+            for b in bookings:
+                text += f"🕒 {b['time']} — {b['name']} ({b['phone']})\n"
+    
+            text += "\n"
+    
+        await m.answer(text)
 
 def free_slots(date, duration):
     duration = int(duration.split()[0])
