@@ -261,9 +261,21 @@ async def h(m: Message):
             "phone": d["phone"]
         })
 
+        db["clients"][str(m.from_user.id)] = d
+        
         save()
 
-        await m.answer("Записано ✅", reply_markup=client_kb)
+       user_id = str(m.from user.id)
+       data = db["clients"].get(user_id, {})
+
+       text = (
+           f" ✅ Запис підтверджено!\n\n"
+           f" 👤 Ім'я: {data.get('name', '-')}\n"
+           f" 📞 Телефон: {data.get('phone', '-')}\n"
+           f" 📅 Дата: {data.get('date', '-')}\n"
+           f" 🕐 Час: {data.get('time', '-')}"
+       )
+      await m.answer(text)
         users.pop(uid)
 
 async def main():
