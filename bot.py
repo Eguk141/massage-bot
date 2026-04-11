@@ -21,6 +21,10 @@ ADMIN_ID = 809778427
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
+
+@dp.message()
+async def test_handler(message: Message):
+    await message.answer("Я працюю")
 @dp.callback_query(F.data.startswith("cancel_"))
 async def cancel_booking(callback: CallbackQuery):
     date = callback.data.split("_")[1]
