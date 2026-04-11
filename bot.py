@@ -67,6 +67,9 @@ def weekends():
             if date not in db["blocked_dates"]:
                 res.append(date)
     return res[:4]
+@dp.messege(Comand("list"))
+async def list_bookings(m: Messege):
+await m.answer("Я працюю 😀")
 
 def free_slots(date, duration):
     duration = int(duration.split()[0])
