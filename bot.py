@@ -287,11 +287,11 @@ async def h(m: Message):
             "name": d["name"],
             "phone": d["phone"]
         })
-                "time": d["time"],
-                "duration": int(d["duration"].split()[0]),
-                "price": d["price"],
-                "name": d["name"],
-                "phone": d["phone"]
+             "time": d["time"],
+             "duration": int(d["duration"].split()[0]),
+             "price": d["price"],
+             "name": d["name"],
+             "phone": d["phone"]
             })
 
         db["clients"][str(m.from_user.id)] = d
