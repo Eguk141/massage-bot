@@ -352,13 +352,19 @@ async def h(m: Message):
     
     async def main():
         print("Бот стартує")
+        
         try:
             await bot.delete_webhnook(drop_pending_updates=True)
             print("Webhook видалено")
         except Exeption as e:
             print("Помилка webhook:". e)
-       
+          
+        print("Перед polling")  #перед
         await dp.start_polling(bot)
-                       
-    if __name__ == "__main__":            
-        asyncio.run(main())     
+    
+    print("Файл стартує")
+   
+    if __name__ == "__main__":   
+        print("Я зайшов в main")
+        asyncio.run(main())   
+        
