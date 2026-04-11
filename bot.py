@@ -281,7 +281,14 @@ async def h(m: Message):
         db["clients"][str(m.from_user.id)] = d
         
         save()
-
+        await bot.send_message(
+        ADMIN_ID,
+            f"✨ НОВИЙ ЗАПИС!\n\n"
+            f"👤 {d.get('name', '-')}\n"
+            f"📞 {d.get('phone', '-')}\n"
+            f"📅 {d.get('date', '-')}\n"
+            f"🕒 {d.get('time', '-')}"
+    )
         user_id = str(m.from_user.id)
         data = db["clients"].get(user_id, {})
 
