@@ -364,5 +364,5 @@ async def main():
 
 print("Файл стартує")
 
- import asyncio
- asyncio.run(main())   
+import asyncio
+asyncio.run(main())   
