@@ -76,15 +76,15 @@ async def list_bookings(m: Message):
 
     text = "📋 Всі записи:\n\n"
 
-for date, items in db["bookings"].items():
-    text += f"📅 {date}\n"
+    for date, items in db["bookings"].items():
+        text += f"📅 {date}\n"
     
-    for b in items:
-        text += f"  🕐 {b['time']} — {b['name']} ({b['phone']})\n"
+        for b in items:
+            text += f"  🕐 {b['time']} — {b['name']} ({b['phone']})\n"
     
-    text += "\n"
+        text += "\n"
 
-    await message.answer(text)
+    await m.answer(text)
 
   
 def free_slots(date, duration):
