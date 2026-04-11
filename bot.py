@@ -8,18 +8,6 @@ from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton, ReplyKey
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram import F
 from aiogram.types import CallbackQuery
-@dp.callback_query(F.data.startswith("cancel_"))
-async def cancel_booking(callback: CallbackQuery):
-    date = callback.data.split("_")[1]
-
-    if date in db["bookings"]:
-        db["bookings"].pop(date)
-
-    save()
-
-    await callback.message.answer("❌ Запис скасовано")
-    await callback.answer()
-    @dp.callback_query(F.data.startswith("move_"))
 async def move_booking(callback: CallbackQuery):
     await callback.message.answer("🔄 Функція переносу скоро буде 😄")
     await callback.answer()
