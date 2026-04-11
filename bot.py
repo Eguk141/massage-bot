@@ -68,7 +68,7 @@ def weekends():
                 res.append(date)
     return res[:4]
 @dp.messege(Comand("list"))
-async def list_bookings(m: Messege):
+async def list_bookings(m: Message):
     await m.answer("Я працюю 😀")
 
 def free_slots(date, duration):
