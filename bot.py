@@ -70,22 +70,21 @@ def weekends():
 @dp.message(Command("list"))
 async def list_bookings(m: Message):
 @router.message(Command("list"))
-async def list_bookings(m.Message):
+async def list_bookings(m: Message):
     if not db["bookings"]:
-        await m.answer(" ❌ Записів поки немає,зарядись енергією 🔋")
+        await m.answer("❌ Записів поки немає,зарядись енергією 🔋")
         return
+
     text = "📋 Всі записи:\n\n"
 
-    for date, bookings in db["bookings".i.tems():
+    for date, bookings in db["bookings"].items():
         text += f"📅 {date}\n"
-    
+
         for b in bookings:
-            
-        text += (
-                f" 🕰 {b['time']} - {b['name']} "
-                f"({b['phone']}\n"
-            )
+            text += f"🕒 {b['time']} — {b['name']} ({b['phone']})\n"
+
         text += "\n"
+
     await m.answer(text)
 
 def free_slots(date, duration):
