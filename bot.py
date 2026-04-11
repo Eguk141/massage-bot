@@ -105,7 +105,7 @@ client_kb = ReplyKeyboardMarkup(
 # --- START ---
 @dp.message(Command("start"))
 async def start(m: Message):
-    if "blacklist" in db and m.from_user.id.in db["blacklist"]:
+    if "blacklist" in db and m.from_user.id in db["blacklist"]:
         return
     await m.answer("Вітаю 💆‍♀️", reply_markup=main_kb)
 
