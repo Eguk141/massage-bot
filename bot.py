@@ -346,17 +346,8 @@ async def h(m: Message):
     import asyncio
     
     async def main():
-        print("Бот стартує") 
+        print("Бот стартує")
+        await bot.delete_webhnook(drop_pending_updates=True)
         await dp.start_polling(bot)
             
-    asyncio.run(main()) 
-    import asyncio
-    print("1. Файл запустився")
-
-    async def main():
-        print("2. Зайшли в main")
-        await dp.start_polling(bot)
-    print("3. Перед Run")
-
-    aeyncio.run(main())
-    print("4.Після Run")
+    asyncio.run(main())     
