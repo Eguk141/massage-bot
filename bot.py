@@ -309,8 +309,8 @@ await bot.send_message(
     f"🕒 {d['time']}",
     reply_markup=kb
 )
-        await m.answer(text)
-        users.pop(user_id)
+ await m.answer(text)
+ users.pop(user_id)
 
 async def main():
     await dp.start_polling(bot)
