@@ -67,7 +67,7 @@ def weekends():
             if date not in db["blocked_dates"]:
                 res.append(date)
     return res[:4]
-@dp.messege(Comand("list"))
+@dp.message(Comand("list"))
 async def list_bookings(m: Message):
     await m.answer("Я працюю 😀")
 
