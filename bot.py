@@ -21,6 +21,17 @@ ADMIN_ID = 809778427
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
+@dp.callback_query(F.data.startswith("cancel_"))
+async def cancel_booking(callback: CallbackQuery):
+    date = callback.data.split("_")[1]
+
+    if date in db["bookings"]:
+        db["bookings"].pop(date)
+
+    save()
+
+    await callback.message.answer("❌ Запис скасовано")
+    await callback.answer()
 
 FILE = "crm.json"
 
