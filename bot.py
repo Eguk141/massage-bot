@@ -343,7 +343,6 @@ async def h(m: Message):
         elif data.startswith("move_"):
             await callback.message.answer("🔁 Перенесення")
             await callback.answer()
-
     
     # 🚀 запуск
     async def main():
