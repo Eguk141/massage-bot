@@ -271,7 +271,7 @@ async def h(m: Message):
         users[uid]["phone"] = text
         d = users[uid]
 
-         bookings = db["bookings"].setdefault(d["date"], [])
+        bookings = db["bookings"].setdefault(d["date"], [])
     
         # перевірка чи час зайнятий
         for b in bookings:
@@ -280,19 +280,19 @@ async def h(m: Message):
                 return
         
     # якщо вільно — додаємо
-    bookings.append({
-        "time": d["time"],
-        "duration": int(d["duration"].split()[0]),
-        "price": d["price"],
-        "name": d["name"],
-        "phone": d["phone"]
-    })
+        bookings.append({
             "time": d["time"],
             "duration": int(d["duration"].split()[0]),
             "price": d["price"],
             "name": d["name"],
             "phone": d["phone"]
         })
+                "time": d["time"],
+                "duration": int(d["duration"].split()[0]),
+                "price": d["price"],
+                "name": d["name"],
+                "phone": d["phone"]
+            })
 
         db["clients"][str(m.from_user.id)] = d
         
