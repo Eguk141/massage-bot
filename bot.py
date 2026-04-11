@@ -84,7 +84,7 @@ for date, items in db["bookings"].items():
     
     text += "\n"
 
- await message.answer(text)
+    await message.answer(text)
 
   
 def free_slots(date, duration):
