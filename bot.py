@@ -354,7 +354,6 @@ async def main():
     print("Бот стартує")
     
     try:
-        await bot.delete_webhnook(drop_pending_updates=True)
         print("Webhook видалено")
     except Exeption as e:
         print("Помилка webhook:". e)
@@ -364,5 +363,4 @@ async def main():
 
 print("Файл стартує")
 
-import asyncio
 asyncio.run(main())   
