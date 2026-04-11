@@ -334,7 +334,7 @@ async def h(m: Message):
     # 🔘 handler
     @dp.callback_query()
     async def handle_buttons(callback: CallbackQuery):
-        data = callback.data
+        data = callback.data or ""
     
         if data.startswith("cancel_"):
             await callback.message.answer("❌ Запис скасовано")
