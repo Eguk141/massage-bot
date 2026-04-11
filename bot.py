@@ -5,7 +5,11 @@ from datetime import datetime, timedelta
 from aiogram import Bot, Dispatcher
 from aiogram.filters import Command
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
-
+db = {
+    "blacklist": [],
+    "clients": {},
+    "bookings": {}
+}
 TOKEN = "8763057998:AAFQsPbthBy9PUVIdsI47wFx49sfnsn_WZo"
 ADMIN_ID = 809778427
 
@@ -17,8 +21,25 @@ FILE = "crm.json"
 if os.path.exists(FILE):
     with open(FILE, "r") as f:
         db = json.load(f)
+
+    # 💥 гарантуємо що всі ключі є
+    if "blacklist" not in db:
+        db["blacklist"] = []
+    if "clients" not in db:
+        db["clients"] = {}
+    if "bookings" not in db:
+        db["bookings"] = {}
+    if "blocked_dates" not in db:
+        db["blocked_dates"] = []
+
 else:
-    db = {"bookings": {}, "clients": {}, "blacklist": [], "blocked_dates": []}
+    db = {
+        "bookings": {},
+        "clients": {},
+        "blacklist": [],
+        "blocked_dates": []
+    }
+    
 
 def save():
     with open(FILE, "w") as f:
@@ -84,7 +105,7 @@ client_kb = ReplyKeyboardMarkup(
 # --- START ---
 @dp.message(Command("start"))
 async def start(m: Message):
-    if m.from_user.id in db["blacklist"]:
+    if "blacklist" in db and m.from_user.id.in db["blacklist"]:
         return
     await m.answer("Вітаю 💆‍♀️", reply_markup=main_kb)
 
