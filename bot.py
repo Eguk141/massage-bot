@@ -353,5 +353,5 @@ async def h(m: Message):
         print("Бот стартує")
         await bot.delete_webhnook(drop_pending_updates=True)
         await dp.start_polling(bot)
-    if __name __ == "__main__":            
+    if __name__ == "__main__":            
         asyncio.run(main())     
