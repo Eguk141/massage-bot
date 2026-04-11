@@ -281,15 +281,15 @@ async def h(m: Message):
                 return
         
      # якщо вільно — додаємо
-         bookings.append({
-             "time": d["time"],
-             "duration": int(d["duration"].split()[0]),
-             "price": d["price"],
-             "name": d["name"],
-             "phone": d["phone"]
-         })
-             
-         db["clients"][str(m.from_user.id)] = d
+    bookings.append({
+    "time": d["time"],
+    "duration": int(d["duration"].split()[0]),
+    "price": d["price"],
+    "name": d["name"],
+    "phone": d["phone"]
+    })
+    
+    db["clients"][str(m.from_user.id)] = d
         
          save()
       
