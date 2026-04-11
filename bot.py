@@ -289,17 +289,17 @@ async def h(m: Message):
     "phone": d["phone"]
     })
     
-db["clients"][str(m.from_user.id)] = d
-save()
-
-kb = InlineKeyboardMarkup(inline_keyboard=[
+    db["clients"][str(m.from_user.id)] = d
+    save()
+    
+    kb = InlineKeyboardMarkup(inline_keyboard=[
     [
         InlineKeyboardButton(text="❌ Скасувати", callback_data=f"cancel_{d['date']}"),
         InlineKeyboardButton(text="🔄 Перенести", callback_data=f"move_{d['date']}")
     ]
-])
-
-await bot.send_message(
+    ])
+    
+    await bot.send_message(
     ADMIN_ID,
     f"✨ НОВИЙ ЗАПИС:\n\n"
     f"👤 {d['name']}\n"
@@ -307,9 +307,9 @@ await bot.send_message(
     f"📅 {d['date']}\n"
     f"🕒 {d['time']}",
     reply_markup=kb
-)
-await m.answer(text)
-users.pop(user_id)
+    )
+    await m.answer(text)
+    users.pop(user_id)
 
 async def main():
     await dp.start_polling(bot)
