@@ -336,3 +336,14 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+    @dp.callback_query()
+async def handle_buttons(callback):
+    data = callback.data
+
+    if data.startswith("cancel_"):
+        await callback.message.answer("❌ Запис скасовано (поки без логіки)")
+        await callback.answer()
+
+    elif data.startswith("move_"):
+        await callback.message.answer("🔁 Перенесення (поки заглушка)")
+        await callback.answer()
