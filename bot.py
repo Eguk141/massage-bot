@@ -1,3 +1,4 @@
+print("Файл стартує")
 import asyncio
 import json
 import os
