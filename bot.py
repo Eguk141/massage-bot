@@ -309,18 +309,18 @@ await bot.send_message(
     f"🕐 {d['time']}",
     reply_markup=kb
 )
-        user_id = str(m.from_user.id)
-        data = db["clients"].get(user_id, {})
+    user_id = str(m.from_user.id)
+    data = db["clients"].get(user_id, {})
 
-        text = (
-           f" ✅ Запис підтверджено!\n\n"
-           f" 👤 Ім'я: {data.get('name', '-')}\n"
-           f" 📞 Телефон: {data.get('phone', '-')}\n"
-           f" 📅 Дата: {data.get('date', '-')}\n"
-           f" 🕐 Час: {data.get('time', '-')}"
-       )
+    text = (
+        f" ✅ Запис підтверджено!\n\n"
+        f" 👤 Ім'я: {data.get('name', '-')}\n"
+        f" 📞 Телефон: {data.get('phone', '-')}\n"
+        f" 📅 Дата: {data.get('date', '-')}\n"
+        f" 🕐 Час: {data.get('time', '-')}"
+ )
         await m.answer(text)
-        users.pop(uid)
+        users.pop(user_id)
 
 async def main():
     await dp.start_polling(bot)
