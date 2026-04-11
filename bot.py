@@ -271,14 +271,14 @@ async def h(m: Message):
         users[uid]["phone"] = text
         d = users[uid]
 
-       bookings = db["bookings"].setdefault(d["date"], [])
-
-    # перевірка чи час зайнятий
-    for b in bookings:
-        if b["time"] == d["time"]:
-            await m.answer("❌ Цей час вже зайнятий")
-            return
+         bookings = db["bookings"].setdefault(d["date"], [])
     
+        # перевірка чи час зайнятий
+        for b in bookings:
+            if b["time"] == d["time"]:
+                await m.answer("❌ Цей час вже зайнятий")
+                return
+        
     # якщо вільно — додаємо
     bookings.append({
         "time": d["time"],
