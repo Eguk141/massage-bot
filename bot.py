@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 from aiogram import Bot, Dispatcher
 from aiogram.filters import Command
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
- from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 db = {
     "blacklist": [],
     "clients": {},
