@@ -174,7 +174,7 @@ async def h(m: Message):
                 "name": "перенесено",
                 "phone": str(uid)
             })
-
+            
             save()
             users.pop(uid)
 
@@ -265,18 +265,18 @@ async def h(m: Message):
         
         save()
 
-       user_id = str(m.from user.id)
-       data = db["clients"].get(user_id, {})
+        user_id = str(m.from user.id)
+        data = db["clients"].get(user_id, {})
 
-       text = (
+        text = (
            f" ✅ Запис підтверджено!\n\n"
            f" 👤 Ім'я: {data.get('name', '-')}\n"
            f" 📞 Телефон: {data.get('phone', '-')}\n"
            f" 📅 Дата: {data.get('date', '-')}\n"
            f" 🕐 Час: {data.get('time', '-')}"
        )
-      await m.answer(text)
-        users.pop(uid)
+       await m.answer(text)
+       users.pop(uid)
 
 async def main():
     await dp.start_polling(bot)
