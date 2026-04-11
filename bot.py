@@ -265,7 +265,7 @@ async def h(m: Message):
         
         save()
 
-        user_id = str(m.from user.id)
+        user_id = str(m.from_user.id)
         data = db["clients"].get(user_id, {})
 
         text = (
