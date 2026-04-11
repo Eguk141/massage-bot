@@ -289,7 +289,6 @@ async def h(m: Message):
     "phone": d["phone"]
     })
     
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 db["clients"][str(m.from_user.id)] = d
 save()
 
