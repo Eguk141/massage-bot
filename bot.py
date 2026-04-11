@@ -346,6 +346,7 @@ async def h(m: Message):
     
     # 🚀 запуск
     async def main():
+        print("Бот стартує") 
         await dp.start_polling(bot)
     
     if __name__ == "__main__":
