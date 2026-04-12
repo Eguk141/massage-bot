@@ -5,9 +5,6 @@ import os
 from datetime import datetime, timedelta
 from aiogram import Bot, Dispatcher
 from aiogram.filters import Command
-@dp.message(Command("start"))
-async def start_handler(message: Message):
-    await message.answer("Привіт! Обери дію 👇")
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram import F
@@ -26,6 +23,10 @@ ADMIN_ID = 809778427
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
+@dp.message(Command("start"))
+async def start_handler(message: Message):
+    await message.answer("Привіт! Обери дію 👇")
+    
 @dp.callback_query(F.data.startswith("cancel_"))
 async def cancel_booking(callback: CallbackQuery):
     date = callback.data.split("_")[1]
