@@ -144,7 +144,7 @@ client_kb = ReplyKeyboardMarkup(
 async def start(m: Message):
     await m.answer("Вітаю!Майстер Тетяна,рада Вам допомогти 💆‍♀️", reply_markup=main_kb)
     
-dp@message(lambda m: m.text == "Записатися")
+@dp.message(lambda m: m.text == "Записатися")
 async def booking_start(m: Message):
     await m.answer("Обери дату")
 
