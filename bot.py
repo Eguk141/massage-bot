@@ -17,7 +17,7 @@ db = {
     "clients": {},
     "bookings": {}
 }
-TOKEN = os.getenv("8763057998:AAFQsPbthBy9PUVIdsI47wFx49sfnsn_WZo")
+TOKEN = os.getenv("8763057998:AAG7hhenoZpXZrQnzjfNZAa4n5JIfSwFVLA")
 ADMIN_ID = 809778427
 
 bot = Bot(token=TOKEN)
