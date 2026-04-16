@@ -17,16 +17,12 @@ db = {
     "clients": {},
     "bookings": {}
 }
-TOKEN = "8763057998:AAFQsPbthBy9PUVIdsI47wFx49sfnsn_WZo"
+TOKEN = os.getenv("8763057998:AAFQsPbthBy9PUVIdsI47wFx49sfnsn_WZo")
 ADMIN_ID = 809778427
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
-
-@dp.message(Command("start"))
-async def start_handler(message: Message):
-    await message.answer("Привіт! Обери дію 👇")
-    
+   
 @dp.callback_query(F.data.startswith("cancel_"))
 async def cancel_booking(callback: CallbackQuery):
     date = callback.data.split("_")[1]
@@ -147,6 +143,10 @@ client_kb = ReplyKeyboardMarkup(
 @dp.message(Command("start"))
 async def start(m: Message):
     await m.answer("Вітаю!Майстер Тетяна,рада Вам допомогти 💆‍♀️", reply_markup=main_kb)
+    )
+dp@massage(lambda m: m.text == "Записатися")
+async def booking_start(m: Message):
+    await m.answer("Обери дату")
 
 # --- CANCEL ---
 @dp.message(lambda m: m.text == "Скасувати запис")
